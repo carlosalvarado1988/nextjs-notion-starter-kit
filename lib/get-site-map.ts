@@ -1,4 +1,4 @@
-import { getAllPagesInSpace, uuidToId } from 'notion-utils'
+import { getAllPagesInSpace } from 'notion-utils'
 import pMemoize from 'p-memoize'
 
 import * as config from './config'
@@ -30,7 +30,7 @@ async function getAllPagesImpl(
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string, ...args) => {
-    // console.log('\nnotion getPage', uuidToId(pageId))
+    // console.log('\nnotion getPage'(pageId))
     return notion.getPage(pageId, ...args)
   }
 
