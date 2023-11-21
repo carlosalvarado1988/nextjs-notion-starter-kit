@@ -247,4 +247,7 @@ But the conflict was when the sharp dependency was running/ installed. To overco
 - now facing new error: `dyld[3702]: missing symbol called`
 - tried with yarn, clean all npm: `rm package-lock.json && rm -rf node_modules` and install with yarn `rm yarn.lock && rm -rf .yarn && yarn`
 - it didnt install packages, neither react
--
+
+####
+
+`npx @next/codemod next-image-to-legacy-image . `
