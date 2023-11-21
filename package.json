@@ -4,7 +4,7 @@
   "private": true,
   "description": "The perfect starter kit for building beautiful websites with Next.js and Notion.",
   "author": "Carlos Alvarado",
-  "repository": "transitive-bullshit/nextjs-notion-starter-kit",
+  "repository": "carlosalvarado1988/nextjs-notion-starter-kit",
   "license": "MIT",
   "engines": {
     "node": ">=18"
