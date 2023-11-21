@@ -184,3 +184,67 @@ See the [contribution guide](contributing.md) and join our amazing list of [cont
 MIT © [Travis Fischer](https://transitivebullsh.it)
 
 Support my open source work by <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
+
+# Development notes
+
+Original Repo: https://github.com/transitive-bullshit/nextjs-notion-starter-kit
+
+#### Initial error because node v14 was under the nextjs requirement >18
+
+- Attempo to install repo: `npm i`, installation fails,
+- running: `npm audit fix --force` it fails - error socket with yarn and other error related with npm.
+- you have to install sharp separately: `npm install --arch=x64 --platform=darwing sharp`
+  -- got the error: `Error: 'darwin-x64' binaries cannot be used on the 'darwin-arm64v8' platform. Please remove the 'node_modules/sharp' directory and run 'npm install' on the 'darwin-arm64v8' platform.`
+  -- so then tried: `npm uninstall sharp && npm install --platform=darwing --arch=arm64 --arm-version=8 sharp`
+  11/7/23 -- Error: `sharp: Installation error: Prebuilt libvips 8.14.5 binaries are not yet available for darwing-arm64v8`
+
+  - Node v18 was giving issues, switched to v14.20 to see:
+  - permission error found: ran: `sudo chown -R 501:20 "/Users/carlosalvarado/.npm"`
+  -
+
+#### Learned about arch swith methods to x64 and arm64
+
+With Mac/M1 I have installed node via nvm. When running via console to determine the architecture it printed what I expected it should be:
+
+`node -p 'process.arch'`
+`arm64`
+But the conflict was when the sharp dependency was running/ installed. To overcome this I resulted in installing node as x64 rather than the arm64. This seemed to correct my dependency woes:
+
+1. Start a new iTerm console and change the terminals architecture version to `arch -x86_64 zsh`
+2. Uninstall / reinstall node version 18 `nvm uninstall 18 && nvm install 18`.
+   Now see the architecture version of x64 `node -p 'process.arch'` === x64
+3. Reinstall dependencies `rm -rf node_modules && npm install`
+4. run `npm audit fix`
+
+#### Tracked down Node Errors by version
+
+- run: `nvm use v1x`
+- run: `rm package-lock.json && rm -rf node_modules && npm install`
+- ERROR: node v14, v15, /node_modules/next/dist/bin/next:57 --> performance.mark("next-start")
+  #ReferenceError: performance is not defined
+  v16 --> Unsupported engine {
+  npm WARN EBADENGINE package: 'next@14.0.3',
+  npm WARN EBADENGINE required: { node: '>=18.17.0' },
+  npm WARN EBADENGINE current: { node: 'v16.20.1', npm: '8.19.4' }
+  npm WARN EBADENGINE }
+
+- installed node v18.17 --> running on x64
+- packages installed and server running with lots of deprication errors n images
+- updated next.config.js, domains to remotePatterns:
+  ```{
+      protocol: 'https',
+      hostname: 'www.notion.so'
+    }
+  ```
+- ERROR: `dyld[42490]: missing symbol called`, found `node -p 'process.arch'` is running on `x64`,
+
+- switched to a new terminal running arm64, as M1 ship, installed v19.9 -> no packages installed because sharp
+- gyp info using node-gyp@9.3.1 ---> gyp info using node@19.9.0 | darwin | arm64
+
+#### Important issue with node-gyp, it does not find dir(s) if dir names have spaces.
+
+- sharp v0.28 introduced this error and reverted in v0.29, this project uses the v0.28 dependency so it fall into this error. [link to issue](https://github.com/lovell/sharp/issues/2994)
+- now facing new error: `dyld[3702]: missing symbol called`
+- tried with yarn, clean all npm: `rm package-lock.json && rm -rf node_modules` and install with yarn `rm yarn.lock && rm -rf .yarn && yarn`
+- it didnt install packages, neither react
+-
