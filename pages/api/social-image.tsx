@@ -15,7 +15,7 @@ const interBoldFontP = fetch(
 ).then((res) => res.arrayBuffer())
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
   api: {
     responseLimit: false
     // responseLimit: '8mb',
