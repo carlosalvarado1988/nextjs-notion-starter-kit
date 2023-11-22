@@ -7,7 +7,7 @@
   "repository": "carlosalvarado1988/nextjs-notion-starter-kit",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": "19.9.0"
   },
   "scripts": {
     "dev": "next dev",
