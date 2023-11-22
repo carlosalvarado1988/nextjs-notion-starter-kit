@@ -257,3 +257,9 @@ But the conflict was when the sharp dependency was running/ installed. To overco
 - Went to the site.config.ts and changes this property to false
   // whether or not to enable support for LQIP preview images (optional)
   isPreviewImageSupportEnabled: false,
+
+#### Adjustments to allow deployment to vercel.
+
+- To deploy the project: `npm run deploy`
+- this will create the project in vercel platform and link this local repo for future manual deployments
+- if you want automatic updates, you can link the project in vercel, to the git repo, enter the build branch: main and every update to the repo will result in a new build and deploy
