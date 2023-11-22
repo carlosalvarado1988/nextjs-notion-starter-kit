@@ -25,13 +25,25 @@ async function searchNotionImpl(
       if (res.ok) {
         return res
       }
-
-      // convert non-2xx HTTP responses into errors
-      const error: any = new Error(res.statusText)
-      error.response = res
-      return Promise.reject(error)
+      try {
+        // convert non-2xx HTTP responses into errors
+        // console.log(
+        //   '🚀 ~ file: search-notion.ts:31 ~ .then ~ res.statusText:',
+        //   res.statusText
+        // )
+        const error: any = new Error(res.statusText)
+        error.response = res
+        return Promise.reject(error)
+      } catch (e) {
+        // console.log('search error', e)
+        return Promise.reject(e)
+      }
     })
     .then((res) => res.json())
+    .catch((error) => {
+      // console.log('🚀 ~ file: search-notion.ts:46 ~ error:', error)
+      return Promise.reject(error)
+    })
 
   // return ky
   //   .post(api.searchNotion, {

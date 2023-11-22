@@ -65,4 +65,20 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
 
 export async function search(params: SearchParams): Promise<SearchResults> {
   return notion.search(params)
+  // .then((res) => {
+  //   console.log('🚀 ~ file: notion.ts:69 ~ returnnotion.search ~ res:', res)
+  //   return res
+  // })
+  // .catch((err) => {
+  //   console.log('🚀 ~ file: notion.ts:75 ~ search ~ err:', err)
+  //   console.log('🚀 ~ file: notion.ts:75 ~ search ~ name:', err.name)
+  //   console.log('🚀 ~ file: notion.ts:75 ~ search ~ code:', err.code)
+
+  //   console.log(
+  //     '🚀 ~ file: notion.ts:75 ~ search ~ Object.keys(err):',
+  //     Object.keys(err)
+  //   )
+
+  //   return err
+  // })
 }
