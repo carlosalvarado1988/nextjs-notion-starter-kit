@@ -260,6 +260,7 @@ But the conflict was when the sharp dependency was running/ installed. To overco
 
 #### Adjustments to allow deployment to vercel.
 
-- To deploy the project: `npm run deploy`
-- this will create the project in vercel platform and link this local repo for future manual deployments
+- I had to remove local font load to social-image endpoint to overcome the 1M edge function size limit
+- To deploy the project: `npm run deploy`, this will trigger a pull of new content. it creates a project if not yet or link an existing project in vercel platform.
 - if you want automatic updates, you can link the project in vercel, to the git repo, enter the build branch: main and every update to the repo will result in a new build and deploy
+- However, manual deploys are important so that it fetches new data from Notion and automatic deployment to a branch ensure code changes are updated
