@@ -1,3 +1,5 @@
+# [Live Site - Carlos Alvarado portfolio](https://carlos-alvarado-portfolio.vercel.app/)
+
 <p align="center">
   <a href="https://transitivebullsh.it/nextjs-notion-starter-kit">
     <img alt="Example article page" src="https://user-images.githubusercontent.com/552829/160132094-12875e09-41ec-450a-80fc-ae8cd488129d.jpg" width="689">
@@ -185,7 +187,7 @@ MIT © [Travis Fischer](https://transitivebullsh.it)
 
 Support my open source work by <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
 
-# Development notes
+# Integration notes
 
 Original Repo: https://github.com/transitive-bullshit/nextjs-notion-starter-kit
 
@@ -264,3 +266,7 @@ But the conflict was when the sharp dependency was running/ installed. To overco
 - To deploy the project: `npm run deploy`, this will trigger a pull of new content. it creates a project if not yet or link an existing project in vercel platform.
 - if you want automatic updates, you can link the project in vercel, to the git repo, enter the build branch: main and every update to the repo will result in a new build and deploy
 - However, manual deploys are important so that it fetches new data from Notion and automatic deployment to a branch ensure code changes are updated
+
+# Deploy Updates
+
+> npm run deploy
